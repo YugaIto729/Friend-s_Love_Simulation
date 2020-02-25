@@ -1,2 +1,4 @@
 # Friend-s_Love_Simulation
 親友の恋路を見守る、ユーモアがある恋愛シミュレーションゲーム開発リポジトリ
+
+GameManagerは、ゲームのスタートとアイテムの管理
