@@ -1,0 +1,56 @@
+﻿#＜立ち絵の画像を扱う命令＞
+
+MESS "立ち絵を生成/準備する"
+SIMG_SET 0 0 1 1 1 0 0 1 1
+MESS "SIMG_SET 立ち絵番号/管理番号 立ち絵番号 眉番号 目番号 口番号 x座標 y座標 z座標 (x倍率 y倍率)"
+
+MESS "立ち絵を移動させる"
+SIMG_MOVE 0 1 1.5 -1.5 1
+MESS "SIMG_MOVE 管理番号 秒数 座標x 座標y 座標z モード(0~3) <\n> モード 0: 座標加算 1:座標加算(待ち無し) <\n> 　　　 2:指定座標に移動 3:指定座標に移動(待ち無し)"
+
+MESS "立ち絵をフェードインフェードアウトさせる"
+SIMG_FADE 0 1 2
+SIMG_FADE 0 1 0
+MESS "SIMG_FADE 管理番号 秒数 モード<\n>モード 0:フェードイン 1:フェードイン(待ち無し) <\n>　　　 2:フェードアウト 3:フェードアウト(待ち無し)"
+
+MESS "立ち絵の優先度(Z軸)を変える"
+SIMG_DEPTH 0 5
+MESS "SIMG_DEPTH 管理番号 Z軸"
+
+MESS "立ち絵に注目する(暗くする)"
+SIMG_FOCUS 0 1
+MESS "立ち絵に注目する(明るく)"
+SIMG_FOCUS 0 0
+MESS "SIMG_FOCUS 管理番号 モード<\n>モード 0:明るくする 1:暗くする"
+
+MESS "立ち絵を左右反転させる"
+SIMG_REV 0
+MESS "SIMG_REV 管理番号 "
+
+MESS "立ち絵を回転させる"
+SIMG_ROT 0 1 50 0
+MESS "SIMG_ROT 管理番号 秒数 回転度数 モード<\n>モード　0:待ちあり 1:待ち無し"
+
+MESS "立ち絵の色を変化させる"
+SIMG_COLOR 0 0.3 0.8 0.8 1
+MESS "SIMG_COLOR 管理番号 r g b a"
+
+MESS "立ち絵を消去する"
+SIMG_REMOVE 0
+MESS "SIMG_REMOVE 管理画像(-1で全画像を消去)"
+
+SIMG_SET 0 0 2 2 2  
+MESS "1"
+SIMG_SET 0 0 1 0 1
+MESS "2"
+SIMG_SET 0 0 2 1 0
+MESS "3"
+SIMG_SET 0 0 0 1 2
+
+MESS "アニメーションを開始する"
+
+SIMG_ANIME 0 1
+MESS "SIMG_ANIME 管理番号 ステート番号"
+SIMG_STOPANIME 0
+
+EVENTEND

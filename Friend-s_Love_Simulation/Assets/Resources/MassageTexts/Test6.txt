@@ -1,0 +1,26 @@
+﻿MESS "アライさーん" フェネック 1
+MESS "どうしたのだフェネック？" アライ 2
+MESS "なんでもございません" フェネック 1
+MESS "なんじゃてめえはったおすぞ" アライ 4
+
+MESS "DIALOG メイン文 ボタン1 ボタン2"
+
+DAILOG_SET 0 1 30 30
+DAILOG_WAIT 0 "[121] != 0"
+BRANCH "[121] == 1"
+	
+ENDBRANCH
+BRANCH "[121] == 2"
+	
+ENDBRANCH
+
+
+DIALOG "あなたは鳥ですか？" "はい" "いいえ"
+#ここからボタン1の処理
+ 	
+ELSE_DIALOG
+#ここからボタン2の処理
+	
+END_DIALOG
+
+

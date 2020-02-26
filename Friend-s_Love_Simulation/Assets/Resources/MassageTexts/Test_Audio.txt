@@ -1,0 +1,28 @@
+﻿#＜音楽を扱う命令＞
+
+MESS "BGMを再生する"
+BGMPLAY 2 1.5
+MESS "BGMPLAY AudioClip番号 ピッチ"
+
+MESS "BGMを切り替える"
+BGMFADE 1 1 2 WAIT
+MESS "BGMFADE AudioClip番号 ピッチ 秒数 モード"
+
+
+MESS "BGMの音量を変える"
+BGMVOL 100
+MESS "BGMVOL 音量(0 ~ 100)"
+
+MESS "BGMを停止する"
+BGMSTOP
+MESS "BGMSTOP"
+
+MESS "BGMを再開する"
+BGMCONT 
+MESS "BGMCONT"
+
+MESS "SEを再生する"
+SOUND 3 1 1
+MESS "SEPLAY AudioClip番号 ピッチ 音量(0 ~ 100)"
+
+EVENTEND

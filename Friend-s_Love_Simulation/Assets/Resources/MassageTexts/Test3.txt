@@ -1,0 +1,20 @@
+﻿MESS "<color=#cc0085><i>うっふ～～～～ん♥</i></color>" "小盃 暮音" 1
+MESS "<b>やるじゃん！！</b>" "楓原 沙苗" 2
+MESS "写真撮ってるの" "折空 あずき" 3
+MESS "は、破廉恥ですよ！！！" "藤咲 千鈴" 4
+
+
+SIMG_SET 0 0 2 2 2  
+MESS "1"
+SIMG_SET 0 0 1 0 1
+MESS "2"
+SIMG_SET 0 0 2 1 0
+MESS "3"
+SIMG_SET 0 0 0 1 2
+MESS "アニメーションを開始する"
+
+SIMG_ANIME 0 1
+MESS "SIMGANIME 管理番号 ステート番号"
+SIMG_STOPANIME 0
+
+EVENTEND

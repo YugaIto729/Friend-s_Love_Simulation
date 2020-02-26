@@ -1,0 +1,17 @@
+﻿LABEL "START"
+
+MESS "v=10は<v=10>　s=2は「<s=2>」"
+
+BRANCH "[10] == 5"
+	MESS "v=10が5になりました"
+	EVENTEND
+ENDBRANCH
+
+MESS "v=10に1減算します"
+VALUE_SET 10 "[10] - 1 "
+
+MESS "s=2に「運命」を代入します"
+TEXT_SET 2 "運命"
+
+GOTO "START"
+
