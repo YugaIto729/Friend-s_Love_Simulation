@@ -6,6 +6,8 @@ MESS "なんじゃてめえはったおすぞ" アライ 4
 MESS "DIALOG メイン文 ボタン1 ボタン2"
 
 DAILOG_SET 0 1 30 30
+ENDEVENT
+
 DAILOG_WAIT 0 "[121] != 0"
 BRANCH "[121] == 1"
 	
@@ -13,6 +15,7 @@ ENDBRANCH
 BRANCH "[121] == 2"
 	
 ENDBRANCH
+DAILOG_REMODE 0
 
 
 DIALOG "あなたは鳥ですか？" "はい" "いいえ"

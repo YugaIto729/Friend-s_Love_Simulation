@@ -49,7 +49,7 @@ public sealed class EventWindowManager : MonoBehaviour
     private Text MS_message_text;
     private Text MS_message_name;
     private Image MS_back_image;
-
+    private Animator MS_window_animator;
     private void Awake()
     {
         if (instance == null)
@@ -69,6 +69,8 @@ public sealed class EventWindowManager : MonoBehaviour
         MS_message_text = MS_message_tO.GetComponentInChildren<Text>();
         MS_message_name = MS_message_nO.GetComponentInChildren<Text>();
         MS_back_image = MS_BackWindow.GetComponent<Image>();
+
+        MS_window_animator = MS_BackWindow.GetComponentInParent<Animator>();
     }
 
     private void Update()
@@ -123,6 +125,7 @@ public sealed class EventWindowManager : MonoBehaviour
                 MS_NoDisplayWindow();
             }
         }
+
     }
 
     public void MS_Push_NextFlag()
@@ -209,6 +212,10 @@ public sealed class EventWindowManager : MonoBehaviour
                 MS_back_image.sprite = sprite_back[mode-1];
             }
         }
+
+        //アニメーションを開始
+        //Debug.Log(MS_window_animator);
+        MS_window_animator.SetTrigger("next");
 
         //次のイベントオブジェクトを読み込む
         message_name = ReplaceCode(TeManager.Get_CullentEvent().name);

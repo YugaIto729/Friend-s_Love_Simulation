@@ -29,8 +29,8 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        Read_DataBase();　//データベース読み込み
-        Starter();
+        //Read_DataBase();　//データベース読み込み
+        //Starter();
     }
 
     // Start is called before the first frame update

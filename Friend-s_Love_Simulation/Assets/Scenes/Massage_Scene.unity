@@ -1856,16 +1856,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Massage_Window
       objectReference: {fileID: 0}
-    - target: {fileID: 988020460585663932, guid: 44311e21ffc12334b81ec4a98c3b93cc,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8482778830544993419, guid: 44311e21ffc12334b81ec4a98c3b93cc,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5830879378531255316, guid: 44311e21ffc12334b81ec4a98c3b93cc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1971,17 +1961,10 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 7207654750047569444, guid: 44311e21ffc12334b81ec4a98c3b93cc,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 80761441, guid: 44311e21ffc12334b81ec4a98c3b93cc, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5393211546520006482, guid: 44311e21ffc12334b81ec4a98c3b93cc,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 2ba2f70a53d3e6d41aa407fa2ca3034f,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44311e21ffc12334b81ec4a98c3b93cc, type: 3}
 --- !u!224 &4741882166693576987 stripped
