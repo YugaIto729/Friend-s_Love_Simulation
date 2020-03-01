@@ -18,15 +18,15 @@
 MESS	"<b>後ろ二人が見てくれるだろうから<v=0>ヨシ！！！ </b>" 現場猫A
 MESS	"<color=#cc0085>前の人</color>がOKって言ってるからヨシ！！！ "	現場猫B
 MESS	"前二人がOK出してるからヨシ！！！ "	現場猫C
-IMGSET	0	1	317	-135
+IMG_SET	0	1	317	-135
 MESS	"いや、ちゃんと採点しなさいよ…"	？？？
-IMGREMOVE 0
-IMGSET	1	0	-306	-136	0.8 0.8
+IMG_REMOVE 0
+IMG_SET	1	0	-306	-136	0.8 0.8
 MESS	"うーん"	"？？？"
-IMGSET	0	1	307	-132
-IMGMOVE 0	1.0	-800	0	3
+IMG_SET	0	1	307	-132
+IMG_MOVE 0	1.0	-800	0	3
 MESS	"さ、帰ろ"	？？？
-IMGREMOVE -1
+IMG_REMOVE -1
 WAIT	1
 MESS	"これは…<size=48>宝箱だ！！！</size>" "<s=0>"
 SELECT "開ける"

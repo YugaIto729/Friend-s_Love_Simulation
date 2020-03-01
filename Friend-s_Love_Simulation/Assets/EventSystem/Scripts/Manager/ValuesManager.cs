@@ -35,7 +35,7 @@ public sealed class ValuesManager : MonoBehaviour
         TeManager = TalkEventManager.instance;
 
         int[] vs = { 256, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        Set_Values(vs);
+        Set_Values(Startup(255));
         string[] ts = { "愚者", "魔術師", "戦車", "女教皇", "皇帝" };
         Set_Texts(ts);
     }
@@ -156,5 +156,17 @@ public sealed class ValuesManager : MonoBehaviour
             return texts[index];
         }
         return "";
+    }
+
+    private int[] Startup(int max)
+    {
+        int[] vs = new int[max];
+
+        for(int i=0; i < vs.Length - 1; i++)
+        {
+            vs[i] = 0;
+        }
+
+        return vs;
     }
 }

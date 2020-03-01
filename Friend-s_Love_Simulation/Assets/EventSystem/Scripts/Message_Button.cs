@@ -28,7 +28,7 @@ public sealed class Message_Button : MonoBehaviour
         EwManager.message_skip = false;
         //if (toggle.isOn) { toggle.isOn = false; GetComponent<Toggle>().isOn = true; }
         
-        Debug.Log("Auto");
+        //Debug.Log("Auto");
     }
 
     public void Skip_Button()
@@ -38,18 +38,18 @@ public sealed class Message_Button : MonoBehaviour
         EwManager.message_auto = false;
         //if (toggle.isOn) { toggle.isOn = false; GetComponent<Toggle>().isOn = true; }
 
-        Debug.Log("Skip");
+        //Debug.Log("Skip");
     }
 
     public void Log_Button()
     {
-        Debug.Log("Log");
+        //Debug.Log("Log");
         LogManager.instance.Display_Log();
     }
 
     public void LogOff_Button()
     {
-        Debug.Log("OFFLog");
+        //Debug.Log("OFFLog");
         LogManager.instance.NoDisplay_Log();
     }
 

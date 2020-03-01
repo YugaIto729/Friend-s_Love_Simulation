@@ -21,6 +21,7 @@ public sealed class EventSelectManager : MonoBehaviour
 
     private int selected = -1;
 
+    private bool onESM_Coroutine = false;
     private TalkEventManager TeManager;
     //private int[] testValues = {0,1,2,3,4,5,6,7,8,9 };
 
@@ -96,7 +97,7 @@ public sealed class EventSelectManager : MonoBehaviour
 
             GameObject o = Instantiate(prefab_Select);
             o.transform.parent = CanvasObject.transform;
-            o.transform.localPosition = new Vector3(0, i * -68, 0);
+            o.transform.localPosition = new Vector3(-1000, -1000, 0);
             if (!eval)
             {
                 o.SetActive(false);
@@ -104,6 +105,7 @@ public sealed class EventSelectManager : MonoBehaviour
 
             Select_Button_Prefab select = o.GetComponent<Select_Button_Prefab>();
             select.Set_Prefab(cullentEvent.choices[i], select_id++); //初期設定
+            select.Move_Display(new Vector3(0, i * -68, 0), 0.5f, i);
 
             select_Button_s.Add(select); //リストに設定
             
@@ -112,10 +114,46 @@ public sealed class EventSelectManager : MonoBehaviour
         SEL_state = SELE_State.DISPLAYING;
     }
 
+    /// <summary>
+    /// 演出用のスコア
+    /// </summary>
+    private int displayed_score = 0;
+
     private void SEL_Displaying()
     {
+        /*
+        var eo = TeManager.Get_CullentEvent();
+        int len = eo.choices.Count;
+
+        if (!onESM_Coroutine)
+        {
+            
+        }
+
+        if (displayed_score >= len)
+        {
+            displayed_score = 0;
+            SEL_state = SELE_State.PUSH_WAITING;
+        }
+        */
         SEL_state = SELE_State.PUSH_WAITING;
     }
+
+    private IEnumerator C_SEL_Displaying(Transform t, Vector3 target, float time)
+    {
+        float rTime = Random.Range(0.5f, 1.5f);
+        Vector3 rVector = new Vector3(Random.Range(-3, 3), Random.Range(-3, 3), Random.Range(-3, 3));
+
+
+        for (int i=0; i < time * 60; i++)
+        {
+            t.localPosition = Vector3.Lerp(t.localPosition, target, i / (time * 60));
+
+            yield return null;
+        }
+
+    }
+
 
     private void SEL_Push_Waiting()
     {

@@ -20,34 +20,43 @@ public class Dialog_Prefab : MonoBehaviour
         
     }
 
+    public void Set()
+    {
+
+    }
+
     public void Set_Default_Dialog(string b1, string b2, string text)
     {
         int mode = 0;
+        Set_Text(text);
 
         if (b1 == "") { mode++; }
         if (b2 == "") { mode++; }
 
         if (mode == 0) //ボタン二つ
         {
-            mainText.text = text;
-            button_objects[0].GetComponentInChildren<Text>().text = b1;
-            button_objects[1].GetComponentInChildren<Text>().text = b2;
+            button_objects[0].GetComponentInChildren<Text>().text = EventWindowManager.ReplaceCode(b1);
+            button_objects[1].GetComponentInChildren<Text>().text = EventWindowManager.ReplaceCode(b2);
         }
         else if (mode == 1) //ボタン一つ
         {
-            mainText.text = text;
             if (b1 != "")
             {
-                button_objects[0].GetComponentInChildren<Text>().text = b1;
+                button_objects[0].GetComponentInChildren<Text>().text = EventWindowManager.ReplaceCode(b1);
                 button_objects[1].SetActive(false);
             }
 
             if (b2 != "")
             {
-                button_objects[0].GetComponentInChildren<Text>().text = b2;
+                button_objects[0].GetComponentInChildren<Text>().text = EventWindowManager.ReplaceCode(b2);
                 button_objects[1].SetActive(false);
             }
         }
+    }
+
+    private void Set_Text(string text)
+    {
+        mainText.text = EventWindowManager.ReplaceCode(text);
     }
 
 }

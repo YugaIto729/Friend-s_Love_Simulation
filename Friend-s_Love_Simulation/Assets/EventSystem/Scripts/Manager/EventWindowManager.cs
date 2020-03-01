@@ -506,7 +506,7 @@ public sealed class EventWindowManager : MonoBehaviour
         return list;
     }
 
-    private string ReplaceCode(string mass)
+    public static string ReplaceCode(string mass)
     {
         string outText = mass;
 

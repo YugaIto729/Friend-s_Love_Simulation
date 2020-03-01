@@ -38,8 +38,8 @@ public class Select_Button_Prefab : MonoBehaviour
 
     public void Push_Button()
     {
-        Debug.Log("image: " + image);
-        Debug.Log("Push: " + select_id);
+        //Debug.Log("image: " + image);
+        //Debug.Log("Push: " + select_id);
         EventSelectManager.instance.Action_Select(this);
     }
 
@@ -86,4 +86,46 @@ public class Select_Button_Prefab : MonoBehaviour
     {
         return animator.GetCurrentAnimatorStateInfo(0).IsName(stateName);
     }
+
+    public void Move_Display(Vector3 target, float time, int i)
+    {
+
+        StartCoroutine(C_middle(target, time, i));
+    }
+
+    private IEnumerator C_middle(Vector3 target, float time, int i)
+    {
+        yield return new WaitForSeconds(i * 0.1f);
+
+        StartCoroutine(C_Displaying(target, time));
+        //StartCoroutine(C_Roteto(time));
+    }
+
+    private IEnumerator C_Displaying(Vector3 target, float time)
+    {
+        float rTime = Random.Range(0.5f, 1.5f);
+        Vector3 rVector = new Vector3(Random.Range(-300, 300), Random.Range(-300, 300), 0);
+        transform.localPosition = new Vector3(target.x-1000, target.y, target.z) + rVector;
+
+        for (int i = 0; i < (time + rTime) * 60; i++)
+        {
+            transform.localPosition = Vector3.Lerp(transform.localPosition, target, i / ((time + rTime) * 60));
+
+            yield return null;
+        }
+
+    }
+
+    private IEnumerator C_Roteto(float time)
+    {
+        Vector3 roteto = new Vector3(0 ,0 ,Random.Range(-5, 5));
+
+        for (int i = 0; i < time * 60; i++)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(roteto), i / (time * 60));
+
+            yield return null;
+        }
+    }
+
 }

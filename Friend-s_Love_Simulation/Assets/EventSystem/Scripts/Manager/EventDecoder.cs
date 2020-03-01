@@ -13,7 +13,6 @@ public sealed class EventDecoder : MonoBehaviour
     private List<EventObject> eventPages;
     private bool isBrunching = false;
     private List<EventObject> HeadSelect;
-    private List<EventObject> Buf_EventObjects;
 
     private bool isOuted = false; //同期デコーダ用　出力許可
     private bool isError = false; //同期デコーダ用　エラー検出
@@ -27,7 +26,6 @@ public sealed class EventDecoder : MonoBehaviour
         }
 
         HeadSelect = new List<EventObject>();
-        Buf_EventObjects = new List<EventObject>();
     }
 
     private void Start()
@@ -55,11 +53,12 @@ public sealed class EventDecoder : MonoBehaviour
 
                 }
             }
-
+            /*
             foreach (var e in eventPages)
             {
                 Debug.Log("event: " + e.eventType);
             }
+            */
         }
 
         return eventPages;
@@ -575,6 +574,50 @@ public sealed class EventDecoder : MonoBehaviour
                             Decode_SoundPlay(int.Parse(eventText[1]), float.Parse(eventText[2]), float.Parse(eventText[3]));
                         }
                         break;
+                    case "DAILOG_SET":
+                        if (time == 3)
+                        {
+                            Decode_Dialog_Set(int.Parse(eventText[1]), int.Parse(eventText[2]), new Vector2(), 0);
+                        }
+                        else if (time == 5)
+                        {
+                            Decode_Dialog_Set(int.Parse(eventText[1]), int.Parse(eventText[2]), new Vector2(float.Parse(eventText[3]), float.Parse(eventText[4])), 1);
+                        }
+                        break;
+                    case "DAILOG_WAIT":
+                        if (time == 3)
+                        {
+                            Decode_Dialog_Wait(int.Parse(eventText[1]), eventText[2]);
+                        }
+                        break;
+                    case "DIALOG_REMOVE":
+                        if (time == 2)
+                        {
+                            Decode_Dialog_Remove(int.Parse(eventText[1]));
+                        }
+                        break;
+                    case "DIALOG":
+                        if (time == 3)
+                        {
+                            Decode_Dialog_Def(eventText[1], eventText[2], "");
+                        }
+                        else if (time == 4)
+                        {
+                            Decode_Dialog_Def(eventText[1], eventText[2], eventText[3]);
+                        }
+                        break;
+                    case "ELSE_DIALOG":
+                        if (time == 1)
+                        {
+                            Decode_Dialog_Def_else();
+                        }
+                        break;
+                    case "END_DIALOG":
+                        if (time == 1)
+                        {
+                            Decode_Dialog_Def_end();
+                        }
+                        break;
                 }
             }
             //catch
@@ -798,7 +841,7 @@ public sealed class EventDecoder : MonoBehaviour
         {
             eventType = EventType.IMAGE_SET,
             image_num = num,
-            sprite = EventImageManager.instance.ImagesList[num_sp],
+            register2 = num_sp,
             image_point = point,
             image_scale = size
         };
@@ -1258,10 +1301,84 @@ public sealed class EventDecoder : MonoBehaviour
         Add_EventObject(eventPage);
     }
     #endregion
-    #region 
+    #region ダイアログ系
+    private void Decode_Dialog_Set(int num, int num_dialog, Vector2 point, int mode)
+    {
+        EventObject eventPage = new EventObject
+        {
+            eventType = EventType.DIALOG_SET,
+            register1 = mode,
+            register2 = num,
+            image_num = num_dialog,
+            image_point = point
+        };
 
+        Add_EventObject(eventPage);
+    }
 
-    #endregion
+    private void Decode_Dialog_Wait(int num, string f)
+    {
+        Parser parser = new Parser(f);
+
+        EventObject eventPage = new EventObject
+        {
+            eventType = EventType.DIALOG_WAIT,
+            register2 = num,
+            parsers = new List<Parser>() { parser },
+        };
+
+        Add_EventObject(eventPage);
+    }
+
+    private void Decode_Dialog_Remove(int num)
+    {
+        EventObject eventPage = new EventObject
+        {
+            eventType = EventType.DIALOG_REMOVE,
+            register2 = num,
+        };
+
+        Add_EventObject(eventPage);
+    }
+
+    private void Decode_Dialog_Def(string mess, string select1, string select2)
+    {
+        int m = 0;
+        if (select1 == "" || select2 == "")
+        {
+            m = 1;
+        }
+
+        EventObject eventPage = new EventObject
+        {
+            eventType = EventType.DIALOG_DEFUALT,
+            message = mess,
+            choices = new List<string>() { select1, select2 }
+        };
+
+        Add_EventObject(eventPage);
+        //========================================================
+        Decode_Value_Set(121, "0");
+        Decode_Dialog_Wait(0, "[121] != 0");
+        Decode_Dialog_Remove(0);
+        if (m == 0)
+        {
+            Decode_Branch("[121]==1");
+        }
+    }
+
+    private void Decode_Dialog_Def_else()
+    {
+        Decode_Branch_end();
+        Decode_Branch("[121]==2");
+    }
+
+    private void Decode_Dialog_Def_end()
+    {
+        Decode_Branch_end();
+    }
+
+    #endregion 
 
 
 
@@ -1285,6 +1402,7 @@ public enum EventType
     MESSAGE = 70, MESS_DELETE, MESS_DISPLAY,
     BACK_SET = 80, BACK_MOVE, BACK_ROT, BACK_REMOVE, BACK_DEPTH,
     VALUE_SET = 90, VALUE_S_SET,
+    DIALOG_SET = 100, DIALOG_WAIT, DIALOG_REMOVE, DIALOG_DEFUALT,
 
 }
 

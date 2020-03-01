@@ -13,7 +13,7 @@ public class ConditionParser : MonoBehaviour
             10, 9, 8, 7, 6, 5, 4, 3, 2, 1
         };
 
-        string puttern = "(0 != 5 || (4 + [4] != [0] || 0==0)) && 4 < 6 && 7==7";
+        string puttern = "0 != [5]";
         var s = new Parser();
         //s.Start(puttern);
         s.Start_Multi(puttern);
@@ -244,6 +244,7 @@ public sealed class Parser
 
         if (node.index_flags[0])
         {
+            //Debug.Log(node.numbers[0]);
             outValue = values[int.Parse(node.numbers[0])];
         }
         else

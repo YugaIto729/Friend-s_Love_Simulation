@@ -75,22 +75,24 @@ public sealed class EventImageManager : MonoBehaviour
     {
         var eo = TeManager.Get_CullentEvent();
 
-        if (imageDict.ContainsKey(eo.image_num)) //管理番号の画像が存在する場合
+        if (ImagesList.Count > eo.register2)
         {
-            var o = imageDict[eo.image_num];
-            o.transform.parent = CanvasObject.transform;
-            var iep = o.GetComponent<Image_Event_Prefab>();
-            iep.Set_Image(eo.image_num, eo.image_point, eo.image_scale, eo.sprite);
+            if (imageDict.ContainsKey(eo.image_num)) //管理番号の画像が存在する場合
+            {
+                var o = imageDict[eo.image_num];
+                o.transform.parent = CanvasObject.transform;
+                var iep = o.GetComponent<Image_Event_Prefab>();
+                iep.Set_Image(eo.image_num, eo.image_point, eo.image_scale, ImagesList[eo.register2]);
+            }
+            else
+            {
+                var o = Instantiate(prefab_Sprite);
+                o.transform.parent = CanvasObject.transform;
+                var iep = o.GetComponent<Image_Event_Prefab>();
+                iep.Set_Image(eo.image_num, eo.image_point, eo.image_scale, ImagesList[eo.register2]);
+                imageDict.Add(eo.image_num, iep);
+            }
         }
-        else
-        {
-            var o = Instantiate(prefab_Sprite);
-            o.transform.parent = CanvasObject.transform;
-            var iep = o.GetComponent<Image_Event_Prefab>();
-            iep.Set_Image(eo.image_num, eo.image_point, eo.image_scale, eo.sprite);
-            imageDict.Add(eo.image_num, iep);
-        }
-
         TeManager.cullentEvent = EventType.SYSTEMWAIT;
         IMG_state = IMG_State.STANDBY;
 

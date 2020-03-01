@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public List<ScriptEvent> EventSouceList;
+    //public List<ScriptEvent> EventSouceList;
     public List<Sprite> ImagesList;
 
     public GamaState gamaState = GamaState.GAME_SCHOOL;

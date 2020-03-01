@@ -1,29 +1,43 @@
-﻿MESS "アライさーん" フェネック 1
+﻿DIALOG "本作はフィクションです。" "YES" 
+
+MESS "アライさーん" フェネック 1
 MESS "どうしたのだフェネック？" アライ 2
 MESS "なんでもございません" フェネック 1
 MESS "なんじゃてめえはったおすぞ" アライ 4
 
 MESS "DIALOG メイン文 ボタン1 ボタン2"
 
-DAILOG_SET 0 1 30 30
-ENDEVENT
+#============================================
+#↓内約
+#============================================
 
-DAILOG_WAIT 0 "[121] != 0"
+DAILOG_SET 1 0 30 30
+VALUE_SET 121 0
+DAILOG_WAIT 1 "[121] != 0"
+DIALOG_REMOVE 1
 BRANCH "[121] == 1"
-	
+	MESS "はいを選択"
 ENDBRANCH
 BRANCH "[121] == 2"
-	
+	MESS "いいえを選択"
 ENDBRANCH
-DAILOG_REMODE 0
 
+MESS "ダイアログ終了"
+#EVENTEND
 
-DIALOG "あなたは鳥ですか？" "はい" "いいえ"
+#============================================
+#ダイアログを使う時はルールを厳守
+#============================================
+
+DIALOG "あなたは鳥ですか？" "YES" "NO"
 #ここからボタン1の処理
- 	
+ 	MESS "YES"
 ELSE_DIALOG
 #ここからボタン2の処理
-	
+	MESS "NO"
 END_DIALOG
 
+
+DIALOG "あなたは鳥ですか？" "YES" 
+MESS "YES"
 

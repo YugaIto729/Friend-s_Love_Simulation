@@ -47,7 +47,7 @@ public sealed class TalkEventManager : MonoBehaviour
 
         //-----------------------------------------------
 
-        EventStart("Test6");
+        //EventStart("Test6");
 
         /*
         EventStart_Message("突然の死！！！！", "");
@@ -779,6 +779,34 @@ public sealed class TalkEventManager : MonoBehaviour
                     cullentEvent = EventType.SOUND;
                 }
                 break;
+            case EventType.DIALOG_SET:
+                if (DialogManager.instance != null)
+                {
+                    DialogManager.instance.DM_state = DialogManager.DM_State.SET;
+                    cullentEvent = EventType.DIALOG_SET;
+                }
+                break;
+            case EventType.DIALOG_WAIT:
+                if (DialogManager.instance != null)
+                {
+                    DialogManager.instance.DM_state = DialogManager.DM_State.WAIT;
+                    cullentEvent = EventType.WAIT;
+                }
+                break;
+            case EventType.DIALOG_REMOVE:
+                if (DialogManager.instance != null)
+                {
+                    DialogManager.instance.DM_state = DialogManager.DM_State.REMOVE;
+                    cullentEvent = EventType.DIALOG_REMOVE;
+                }
+                break;
+            case EventType.DIALOG_DEFUALT:
+                if (DialogManager.instance != null)
+                {
+                    DialogManager.instance.DM_state = DialogManager.DM_State.SET_DEFAULT;
+                    cullentEvent = EventType.DIALOG_DEFUALT;
+                }
+                break;
         }
     }
 
@@ -802,7 +830,7 @@ public sealed class TalkEventManager : MonoBehaviour
         
         if (culletIndex >= eventBuff.Count)
         {
-            Debug.Log("終了");
+            //Debug.Log("終了");
             cullentEvent = EventType.STANDBY;
             culletIndex = 0;
             eventMode = false;
