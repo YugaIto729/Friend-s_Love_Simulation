@@ -1,0 +1,30 @@
+﻿# +====================+
+#|| 名前入力のイベント ||
+# +====================+
+
+BGMPLAY "rain-piano" 1
+BACKIMG_SET 0 "backImg_test" 0 0 1 1
+FADE 0.5  0 0 0 0  WAIT
+
+LABEL "START"
+MESS "あなたの名前を教えてください"
+
+#ダイアログを設置
+DIALOG_SET 1 1
+
+#変数を初期化
+VALUE_SET 121 0
+
+#条件を満たされるまで待機
+DIALOG_WAIT "[121] != 0"
+DIALOG_REMOVE 1
+
+MESS "あなたの名前は「<s=1> <s=2>」でよろしいですか？"
+
+DIALOG "NONE" "はい" "考え直す"
+#ここからボタン1の処理
+ 	
+ELSE_DIALOG
+#ここからボタン2の処理
+	GOTO "START"
+END_DIALOG

@@ -1,0 +1,2 @@
+﻿MESS "藤咲千鈴との遭遇"
+SCH_ENCO_SET 3 3 

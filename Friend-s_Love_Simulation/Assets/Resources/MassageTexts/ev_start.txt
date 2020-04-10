@@ -1,0 +1,10 @@
+﻿MESS "(今日も寝るかー、おやすみ・・・)" "<s=1> <s=2>"
+
+MESS "あのさぁ、俺…彼女欲しいんだ…" 友人
+MESS "なるほどなぁ"　"<s=1> <s=2>"
+
+WAIT 1
+MESSOFF
+BGMSTOP
+FADE 0.5 BLACK WAIT
+BACKIMG_REMODE 0

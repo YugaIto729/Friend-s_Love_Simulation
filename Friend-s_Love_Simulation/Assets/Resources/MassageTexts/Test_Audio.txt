@@ -1,0 +1,28 @@
+﻿#＜音楽を扱う命令＞
+
+MESS "BGMを再生する"
+BGMPLAY "raina" 1.5
+MESS "BGMPLAY 音楽ファイルパス ピッチ"
+
+MESS "BGMを切り替える"
+BGMFADE "退屈の平穏" 1 2 WAIT
+MESS "BGMFADE 音楽ファイルパス ピッチ 秒数 モード"
+
+
+MESS "BGMの音量を変える"
+BGMVOL 100
+MESS "BGMVOL 音量(0 ~ 100)"
+
+MESS "BGMを停止する"
+BGMSTOP
+MESS "BGMSTOP"
+
+MESS "BGMを再開する"
+BGMCONT 
+MESS "BGMCONT"
+
+MESS "SEを再生する"
+SOUND "lightning1" 1 1
+MESS "SEPLAY 音楽ファイルパス ピッチ 音量(0 ~ 100)"
+
+EVENTEND

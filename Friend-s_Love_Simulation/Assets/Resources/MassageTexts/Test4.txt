@@ -1,0 +1,25 @@
+﻿
+#FADE 秒数 r g b a モード
+FADE 0 BLACK WAIT
+
+BACKIMG_SET 0 "backimg_kote1" 0 0 1.35 1.35
+FADE 0.5 0 0 0 0 WAIT
+MESS "1"
+BACKIMG_MOVE 0 1.5 100 100 WAIT_ADD
+MESS "2"
+BACKIMG_ROT 0 2 60 WAIT
+MESS "まつ"
+BACKIMG REMOVE 0
+
+
+
+#FADE 秒数 色名 モード
+#色名一覧 BLACK WHITE
+#FADE 0 BLACK 0
+
+MESS "そういうことかよ！！！"
+MESS "ウインドウ消します"
+MESSOFF
+WAIT 1
+#MESSON
+MESS "表示させました"
